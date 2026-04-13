@@ -1,12 +1,9 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
 const app = express();
 const PORT = 3000;
-
 app.use(express.json());
-
 const users = []; 
 const SECRET_KEY = "rahasia_negara";
 
@@ -24,12 +21,11 @@ app.post('/register', async (req, res) => {
         const newUser = { id: users.length + 1, username: username, password: hashedPassword };
         users.push(newUser);
 
-        res.status(201).json({ pesan: "Registrasi berhasil!" });
+        res.status(201).json({ pesan: "Registrasi berhasil akang/teteh!" });
     } catch (error) {
-        res.status(500).json({ pesan: "Terjadi kesalahan saat registrasi." });
+        res.status(500).json({ pesan: "Terjadi kesalahan saat registrasi, silahkan coba lagi." });
     }
 });
-
 
 app.post('/login', async (req, res) => {
     try {
@@ -37,7 +33,7 @@ app.post('/login', async (req, res) => {
         
         
         const user = users.find(u => u.username === username);
-        if (!user) return res.status(404).json({ pesan: "Pengguna tidak ditemukan!" });
+        if (!user) return res.status(404).json({ pesan: "Pengguna tidak ditemukan, silahkan masukan data yang benar!" });
 
         
         const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -56,7 +52,6 @@ app.post('/login', async (req, res) => {
     }
 });
 
-
 app.get('/profil', (req, res) => {
     try {
         
@@ -68,7 +63,7 @@ app.get('/profil', (req, res) => {
         
         const decoded = jwt.verify(token, SECRET_KEY);
         
-        res.json({ pesan: "Selamat datang di ruang VVIP!", data: decoded });
+        res.json({ pesan: "Selamat datang di gudang data!", data: decoded });
     } catch (error) {
         res.status(403).json({ pesan: "Token tidak valid atau sudah kadaluarsa!" });
     }
