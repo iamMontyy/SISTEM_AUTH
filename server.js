@@ -65,7 +65,7 @@ app.get('/profil', (req, res) => {
         
         res.json({ pesan: "Selamat datang di gudang data!", data: decoded });
     } catch (error) {
-        res.status(403).json({ pesan: "Token tidak valid atau sudah kadaluarsa!" });
+        res.status(403).json({ pesan: "Token tidak valid atau sudah hangus!" });
     }
 });
 
