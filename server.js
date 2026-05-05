@@ -5,7 +5,7 @@ const app = express();
 const PORT = 3000;
 app.use(express.json());
 const users = []; 
-const SECRET_KEY = "rahasia_negara";
+const SECRET_KEY = "rahasia";
 
 app.post('/register', async (req, res) => {
     try {
