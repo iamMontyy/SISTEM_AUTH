@@ -33,7 +33,7 @@ app.post('/login', async (req, res) => {
         
         
         const user = users.find(u => u.username === username);
-        if (!user) return res.status(404).json({ pesan: "Pengguna tidak ditemukan, silahkan masukan data yang benar!" });
+        if (!user) return res.status(404).json({ pesan: "Pengguna tidak ditemukan, silahkan masukan data yang valid!" });
 
         
         const isPasswordValid = await bcrypt.compare(password, user.password);
